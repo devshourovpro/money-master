@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Master</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <header class="my-10 text-center">
+        <h1 class="text-4xl text-purple-400">Money Master</h1>
+    </header>
+    <section class="grid grid-cols-2 w-4/5 mx-auto h-2/5 gap-4">
+        <div>
+            <img src="./Pexels Photo by Karolina Grabowska.png" alt="">
+        </div>
+        <div class="bg-slate-200 text-center">
+            <div class="mb-4">
+                <h1 class="text-3xl mb-3">Income</h1>
+                <label for="input">Income:</label>
+                <input class="bg-slate-300 p-3" type="text" name="" id="income" value="10000">
+            </div>
+            <div class="mb-4">
+                <h1 class="text-3xl mb-3">Expenses</h1>
+                <label for="input">Food:</label>
+                <input class="bg-slate-300 p-3 mb-2 ml-8" type="text" name="" id="food" value="3000"> <br>
+                <label for="input">Rent:</label>
+                <input class="bg-slate-300 p-3 mb-2 ml-8" type="text" name="" id="rent" value="2000"> <br>
+                <label for="input">Clothes:</label>
+                <input class="bg-slate-300 p-3 mb-2 ml-3" type="text" name="" id="clothes" value="500">
+            </div>
+            <button class="py-3 px-8 bg-sky-500 rounded text-white font-semibold" id="calculate-btn">Calculate</button>
+            <h3>Total Expanses: <span id="expanses"></span></h3>
+            <h3>Balance: <span id="balance"></span></h3>
+            <div class="flex flex-row justify-center items-center">
+                <div>
+                    <label for="input">Save:</label>
+                    <input class="bg-slate-300 mb-2 mt-9 w-14 px-3 py-1" type="text" name="" id="save-value" value="20">
+                </div>
+                <div>
+
+                    <P class="ml-1 mt-6">%</P>
+                </div>
+                <div>
+
+                    <button class="text-white font-semibold rounded mt-6 ml-3 px-8 py-1 bg-sky-500"
+                        id="save-btn">Save</button>
+                </div>
+            </div>
+            <h3>Saving Amount: <span id="save-amount"></span></h3>
+            <h3>Remaining Balance: <span id="remain-balance"></span></h3>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('calculate-btn').addEventListener('click', function () {
+            const foodValue = document.getElementById('food');
+            console.log(foodValue)
+            const rentValue = document.getElementById('rent');
+            const clothesValue = document.getElementById('clothes')
+            const TotalExpanses = parseFloat(foodValue.value) + parseFloat(rentValue.value) + parseFloat(clothesValue.value);
+            const expansesValue = document.getElementById('expanses');
+            expansesValue.innerText = TotalExpanses;
+            const income = document.getElementById('income');
+            const balance = document.getElementById('balance');
+            balance.innerText = parseFloat(income.value) - TotalExpanses;
+        })
+        document.getElementById('save-btn').addEventListener('click', function(){
+            const income = document.getElementById('income');
+            const save = parseFloat(income.value) * 0.2;
+            const saveAmount = document.getElementById('save-amount')
+            saveAmount.innerText = save;
+            const foodValue = document.getElementById('food');
+            console.log(foodValue)
+            const rentValue = document.getElementById('rent');
+            const clothesValue = document.getElementById('clothes')
+            const TotalExpanses = parseFloat(foodValue.value) + parseFloat(rentValue.value) + parseFloat(clothesValue.value) + save;
+            const remaining = document.getElementById('remain-balance');
+            const remainingBalance = parseFloat(income.value) - TotalExpanses;
+            remaining.innerText = remainingBalance;
+        })
+    </script>
+</body>
+
+</html>
